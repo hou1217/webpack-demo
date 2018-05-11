@@ -1,11 +1,33 @@
 const path = require('path');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+  //entry: './src/index.js',
+  entry:{
+    app: './src/index.js',
+    // print: './src/print.js'
   },
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+    hot:true
+  },
+  plugins:[
+    new HtmlWebpackPlugin({
+      title:'Code Splitting',
+    }),
+   
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  output: {
+    //filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    // publicPath: '/'
+  },
+
   // module: {
   //   rules: [
   //     {
