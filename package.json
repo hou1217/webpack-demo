@@ -8,7 +8,7 @@
     "build": "webpack --config webpack.prod.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "houyishuai",
   "license": "ISC",
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.19",

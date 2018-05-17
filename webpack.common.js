@@ -1,10 +1,11 @@
  const path = require('path');
  const CleanWebpackPlugin = require('clean-webpack-plugin');
  const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+ const config = require('./config');
  module.exports = {
    entry: {
-     app: './src/index.js'
+     index: './src/index.js',
+     
    },
    plugins: [
      new CleanWebpackPlugin(['dist']),
@@ -13,7 +14,11 @@
      })
    ],
    output: {
-     filename: '[name].bundle.js',
-     path: path.resolve(__dirname, 'dist')
+     filename: '[name].js',
+    //  path: path.resolve(__dirname, 'dist')
+    path: config.build.assetsRoot,
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
    }
  };
